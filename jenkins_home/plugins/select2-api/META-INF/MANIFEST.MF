@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: simonsymhoven
+Build-Jdk: 11.0.10
+Extension-Name: select2-api
+Specification-Title: Jenkins plug-in that provides Select2.js (https:/
+ /select2.org).
+Implementation-Title: select2-api
+Implementation-Version: 4.0.13-6
+Group-Id: io.jenkins.plugins
+Short-Name: select2-api
+Long-Name: Select2 Api plugin
+Url: https://github.com/jenkinsci/select2-api-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 4.0.13-6
+Hudson-Version: 2.263.1
+Jenkins-Version: 2.263.1
+Plugin-Dependencies: jquery3-api:3.6.0-2
+Plugin-Developers: Simon Symhoven:simonsymhoven:post@simon-symhoven.de
+Support-Dynamic-Loading: true
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/select2-api-plugin
+

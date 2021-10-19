@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: Utilizador
+Build-Jdk: 1.8.0_162
+Extension-Name: build-user-vars-plugin
+Specification-Title: Sets username build variables
+Implementation-Title: build-user-vars-plugin
+Implementation-Version: 1.8
+Group-Id: org.jenkins-ci.plugins
+Short-Name: build-user-vars-plugin
+Long-Name: Jenkins build user vars plugin
+Url: https://github.com/jenkinsci/build-user-vars-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.8
+Hudson-Version: 2.222.4
+Jenkins-Version: 2.222.4
+Plugin-Dependencies: mailer:1.32.1,saml:1.0.4;resolution:=optional
+Plugin-Developers: Gavriil Konovalenko:gkonovalenko:gkonovalenko@gmail
+ .com
+Plugin-License-Name: MIT license
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/build-user-vars-plugin
+

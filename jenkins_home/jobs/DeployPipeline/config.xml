@@ -1,0 +1,187 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?><flow-definition plugin="workflow-job@2.41">
+  <actions/>
+  <description/>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.6"/>
+    
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>OperationType</name>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>发布</string>
+              <string>回滚</string>
+              <string>下线</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>KubernetesEnv</name>
+          <description>山东 prod kubernetes</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>prod</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>Namespace</name>
+          <description>山东 prod namespace</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>prod</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>Type</name>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>产品需求</string>
+              <string>技术优化</string>
+              <string>bugfix</string>
+              <string>回滚</string>
+              <string>下线</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>Reason</name>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+        <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.5.6">
+          <name>Application</name>
+          <randomName>choice-parameter-69477506239081</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.ScriptlerScript">
+            <scriptlerScriptId>Application.groovy</scriptlerScriptId>
+            <parameters class="linked-hash-map"/>
+          </script>
+          <projectName>DeployPipeline</projectName>
+          <projectFullName>DeployPipeline</projectFullName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>KubernetesEnv,Namespace</referencedParameters>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>true</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.CascadeChoiceParameter>
+        <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.5.6">
+          <name>Image</name>
+          <randomName>choice-parameter-70531979869394</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.ScriptlerScript">
+            <scriptlerScriptId>Image.groovy</scriptlerScriptId>
+            <parameters class="linked-hash-map"/>
+          </script>
+          <projectName>DeployPipeline</projectName>
+          <projectFullName>DeployPipeline</projectFullName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>KubernetesEnv,Namespace,Application</referencedParameters>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>true</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.CascadeChoiceParameter>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.94">
+    <script>pipeline {
+  agent any
+  stages {
+    
+    stage('清理工作空间') {
+        steps {
+            script {
+                wrap([$class: 'BuildUser']) {
+                    buildName "#${BUILD_NUMBER}-${env.BUILD_USER_ID}"
+                }
+            }
+            sh "rm -rf *"
+        }
+    }
+    
+    stage('申请') {
+        steps {
+            script {
+                wrap([$class: 'BuildUser']) {
+                    dir("/home/devops/ci"){
+                        approval_result=sh(returnStdout: true,script: "python3 approval.py '${params.KubernetesEnv}' '${params.Namespace}' '${params.Image}' '${params.Application}' '${env.WORKSPACE}'")
+                    }
+                }
+            }
+        }
+    }
+    
+    stage('发布提醒') {
+        steps {
+            script {
+                dingtalk(
+                  robot: '9709735e-53c6-4d5e-8c2b-f18568e8fc49', 
+                  type: 'MARKDOWN',
+                  title: '发布提醒', 
+                  text: [
+                      '# 发布提醒',
+                      '---',
+                      '请登录',
+                      "https://jenkins.unievbj.com/job/DeployPipeline",
+                      '继续操作'
+                  ]
+                )    
+            }
+        }
+    }
+    
+    stage('正式发布') {
+        steps {
+            input message: '正式发布', ok: '发布'
+            script {
+                dir(path: '/home/devops/ci'){
+                    run_status=sh(returnStatus: true ,script: "python3 run.py '${params.KubernetesEnv}' '${params.Namespace}' '${env.WORKSPACE}' '${params.OperationType}'")
+                }
+            }
+        }
+    }
+
+    stage('发布结果通知') {
+      steps {
+          script {
+              status="成功";
+              if(run_status==1){
+                  status="失败"
+              }
+          }
+          dingtalk(
+              robot: '9709735e-53c6-4d5e-8c2b-f18568e8fc49', 
+              type: 'MARKDOWN', 
+              title: '发布结果', 
+              text: [
+                  '# 发布结果',
+                  '---',
+                  "${params.Application}"+"发布"+"${status}",
+                  "${env.BUILD_URL}"
+              ]
+          )
+          script {
+              if(run_status==1){
+                  error '发布失败'
+              }
+          }
+      }
+    }
+  }
+}</script>
+    <sandbox>false</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

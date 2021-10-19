@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: liuwei
+Build-Jdk: 11.0.11
+Extension-Name: dingding-notifications
+Specification-Title: 钉钉 Jenkins 插件
+Implementation-Title: dingding-notifications
+Implementation-Version: 2.4.4
+Group-Id: io.jenkins.plugins
+Short-Name: dingding-notifications
+Long-Name: DingTalk
+Url: https://github.com/jenkinsci/dingtalk-plugin
+Compatible-Since-Version: 2.0.0
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.4.4
+Hudson-Version: 2.263.1
+Jenkins-Version: 2.263.1
+Plugin-Developers: Liu Wei:liuweigl:wei2460@qq.com
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/dingtalk-plugin
+

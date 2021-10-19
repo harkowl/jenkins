@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: ogondza
+Build-Jdk: 1.8.0_292
+Extension-Name: groovy
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: groovy
+Implementation-Version: 2.4
+Group-Id: org.jenkins-ci.plugins
+Short-Name: groovy
+Long-Name: Groovy
+Url: https://github.com/jenkinsci/groovy-plugin
+Compatible-Since-Version: 2.0
+Minimum-Java-Version: 1.8
+Plugin-Version: 2.4
+Hudson-Version: 2.107.3
+Jenkins-Version: 2.107.3
+Plugin-Dependencies: workflow-cps-global-lib:2.13;resolution:=optional
+ ,workflow-step-api:2.18,script-security:1.54,structs:1.15,token-macro
+ :1.4;resolution:=optional
+Plugin-Developers: Vojtech Juranek:vjuranek:
+

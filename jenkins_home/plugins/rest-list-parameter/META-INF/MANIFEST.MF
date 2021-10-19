@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: mrx
+Build-Jdk: 11.0.12
+Extension-Name: rest-list-parameter
+Specification-Title: The Jenkins Plugins Parent POM Project
+Implementation-Title: rest-list-parameter
+Implementation-Version: 1.4.2
+Group-Id: io.jenkins.plugins
+Short-Name: rest-list-parameter
+Long-Name: REST List Parameter
+Url: https://github.com/jenkinsci/rest-list-parameter-plugin/blob/rest
+ -list-parameter-1.4.2/README.adoc
+Minimum-Java-Version: 1.8
+Plugin-Version: 1.4.2
+Hudson-Version: 2.263.4
+Jenkins-Version: 2.263.4
+Plugin-Dependencies: jquery3-api:3.6.0-2,okhttp-api:3.14.9,select2-api
+ :4.0.13-6,credentials:2.5,jackson2-api:2.12.4,plain-credentials:1.7,s
+ tructs:1.23
+Plugin-Developers: h1dden-da3m0n:h1dden_da3m0n:
+Plugin-License-Name: GNU General Public License version 3
+Plugin-License-Url: https://opensource.org/licenses/GPL-3.0
+Plugin-ScmUrl: https://github.com/jenkinsci/rest-list-parameter-plugin
+

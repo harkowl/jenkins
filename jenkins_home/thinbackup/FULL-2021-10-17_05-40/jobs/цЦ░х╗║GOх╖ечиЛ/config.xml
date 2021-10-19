@@ -1,0 +1,103 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?><org.jenkinsci.plugins.jobgenerator.JobGenerator plugin="jobgenerator@1.22">
+  <description/>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.jira.JiraProjectProperty plugin="jira@3.6"/>
+    
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>50</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.jenkinsci.plugins.jobgenerator.parameters.GeneratorKeyValueParameterDefinition>
+          <name>git</name>
+          <description>填写你的git ssh地址</description>
+          <trim>false</trim>
+        </org.jenkinsci.plugins.jobgenerator.parameters.GeneratorKeyValueParameterDefinition>
+        <org.jenkinsci.plugins.jobgenerator.parameters.GeneratorKeyValueParameterDefinition>
+          <name>ProjectName</name>
+          <description>需要编译的模块名</description>
+          <trim>false</trim>
+        </org.jenkinsci.plugins.jobgenerator.parameters.GeneratorKeyValueParameterDefinition>
+        <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.9.13">
+          <name>branch</name>
+          <description>分支名</description>
+          <uuid>fa887ac4-cf2d-4ca1-bd11-87a6bd0b9531</uuid>
+          <type>PT_BRANCH</type>
+          <branch/>
+          <tagFilter>*</tagFilter>
+          <branchFilter>.*</branchFilter>
+          <sortMode>NONE</sortMode>
+          <defaultValue>origin/master</defaultValue>
+          <selectedValue>NONE</selectedValue>
+          <quickFilterEnabled>false</quickFilterEnabled>
+          <listSize>5</listSize>
+        </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@4.8.2">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>${git}</url>
+        <credentialsId>d57460f9-5a02-4ba0-98f3-5054dffca16b</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>$branch</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="empty-list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>true</concurrentBuild>
+  <builders>
+    <org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep plugin="config-file-provider@3.8.1">
+      <managedFiles>
+        <org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile>
+          <fileId>dce361b7-04ea-44e3-9406-792600ef9fa5</fileId>
+          <targetLocation>./Dockerfile</targetLocation>
+          <replaceTokens>false</replaceTokens>
+        </org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile>
+      </managedFiles>
+    </org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep>
+    <hudson.tasks.Shell>
+      <command>go env -w GOPROXY=https://goproxy.cn,direct
+go build</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>GIT_BRANCH=${GIT_BRANCH:7}
+GIT_BRANCH=${GIT_BRANCH//'\/'/'_'}
+docker login -u ci@1365020627632853 -p XuR7HpELqze3iy7bV registry-vpc.cn-beijing.aliyuncs.com
+docker build -t registry-vpc.cn-beijing.aliyuncs.com/unievbj/${ProjectName}:${GIT_BRANCH#*/}-${GIT_COMMIT:0:8}-jenkins --build-arg=PROJECT=${ProjectName} --file=./Dockerfile .
+docker push registry-vpc.cn-beijing.aliyuncs.com/unievbj/${ProjectName}:${GIT_BRANCH#*/}-${GIT_COMMIT:0:8}-jenkins</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@2.2.0">
+      <template>#${BUILD_NUMBER}-${GIT_BRANCH}</template>
+      <descriptionTemplate/>
+      <runAtStart>true</runAtStart>
+      <runAtEnd>true</runAtEnd>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+  <generatedJobName>${ProjectName}</generatedJobName>
+  <generatedDisplayJobName/>
+  <autoRunJob>false</autoRunJob>
+</org.jenkinsci.plugins.jobgenerator.JobGenerator>

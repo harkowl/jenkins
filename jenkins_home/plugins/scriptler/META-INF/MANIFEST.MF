@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: mtughan
+Build-Jdk: 1.8.0_282
+Extension-Name: scriptler
+Specification-Title: Scriptler allows you to store/edit/execute Groovy
+  scripts on any of the slaves/nodes... no need to copy paste Groovy c
+ ode anymore. Beside administer your scripts, Scriptler also provides 
+ a way to share scripts between users via hosted script catalogs on th
+ e internet.
+Implementation-Title: scriptler
+Implementation-Version: 3.3
+Plugin-Class: org.jenkinsci.plugins.scriptler.ScriptlerPluginImpl
+Group-Id: org.jenkins-ci.plugins
+Short-Name: scriptler
+Long-Name: Scriptler
+Url: https://github.com/jenkinsci/scriptler-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 3.3
+Hudson-Version: 2.121.3
+Jenkins-Version: 2.121.3
+Plugin-Dependencies: antisamy-markup-formatter:2.1,git-server:1.7,scri
+ pt-security:1.26,token-macro:2.3
+Plugin-Developers: Dominik Bartholdi:imod:-,Michael Tughan:mtughan:
+Plugin-ScmUrl: https://github.com/jenkinsci/scriptler-plugin
+

@@ -1,0 +1,831 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<org.jenkinsci.plugins.configfiles.GlobalConfigFiles plugin="config-file-provider@3.8.1">
+  <configs class="sorted-set">
+    <comparator class="org.jenkinsci.plugins.configfiles.ConfigByIdComparator"/>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>16322b6b-16d6-4226-8d2d-348fadf62375</id>
+      <name>Dockerfile_fe</name>
+      <comment></comment>
+      <content>FROM registry-vpc.cn-beijing.aliyuncs.com/uniev/nginx:1-16-0-alpine3.9
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/conf.d/*.conf /etc/nginx/conf.d/
+COPY output /etc/nginx/html/
+
+EXPOSE 80
+CMD [&quot;nginx&quot;]</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig>
+      <id>372ee50d-56f3-4703-b836-860f11bfd2ce</id>
+      <name>MySettings</name>
+      <comment>User settings</comment>
+      <content>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+    &lt;mirrors&gt;
+        &lt;mirror&gt;
+            &lt;id&gt;mirror&lt;/id&gt;
+            &lt;mirrorOf&gt;central,jcenter,!rdc-releases,!rdc-snapshots&lt;/mirrorOf&gt;
+            &lt;name&gt;mirror&lt;/name&gt;
+            &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+        &lt;/mirror&gt;
+
+    &lt;/mirrors&gt;
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;id&gt;rdc-releases&lt;/id&gt;
+            &lt;username&gt;60c19d47aa6381038e4ab3f9&lt;/username&gt;
+            &lt;password&gt;swpAQZUnOWD=&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;server&gt;
+            &lt;id&gt;rdc-snapshots&lt;/id&gt;
+            &lt;username&gt;60c19d47aa6381038e4ab3f9&lt;/username&gt;
+            &lt;password&gt;swpAQZUnOWD=&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+    &lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;id&gt;rdc&lt;/id&gt;
+            &lt;properties&gt;
+                &lt;altReleaseDeploymentRepository&gt;
+                    rdc-releases::default::https://packages.aliyun.com/maven/repository/2110806-release-Q7cWXO/
+                &lt;/altReleaseDeploymentRepository&gt;
+                &lt;altSnapshotDeploymentRepository&gt;
+                    rdc-snapshots::default::https://packages.aliyun.com/maven/repository/2110806-snapshot-JBpUvd/
+                &lt;/altSnapshotDeploymentRepository&gt;
+            &lt;/properties&gt;
+            &lt;repositories&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;snapshots&lt;/id&gt;
+                    &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;rdc-releases&lt;/id&gt;
+                    &lt;url&gt;https://packages.aliyun.com/maven/repository/2110806-release-Q7cWXO/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;rdc-snapshots&lt;/id&gt;
+                    &lt;url&gt;https://packages.aliyun.com/maven/repository/2110806-snapshot-JBpUvd/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+            &lt;/repositories&gt;
+            &lt;pluginRepositories&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;snapshots&lt;/id&gt;
+                    &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;rdc-releases&lt;/id&gt;
+                    &lt;url&gt;https://packages.aliyun.com/maven/repository/2110806-release-Q7cWXO/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;rdc-snapshots&lt;/id&gt;
+                    &lt;url&gt;https://packages.aliyun.com/maven/repository/2110806-snapshot-JBpUvd/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+            &lt;/pluginRepositories&gt;
+        &lt;/profile&gt;
+    &lt;/profiles&gt;
+    &lt;activeProfiles&gt;
+        &lt;activeProfile&gt;rdc&lt;/activeProfile&gt;
+    &lt;/activeProfiles&gt;
+&lt;/settings&gt;</content>
+      <providerId>org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig</providerId>
+      <serverCredentialMappings/>
+      <isReplaceAll>true</isReplaceAll>
+    </org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig>
+    <org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig>
+      <id>500d1c7c-b9fd-4c8d-8cca-d0e97ba7292c</id>
+      <name>MyGlobalSettings</name>
+      <comment>Global settings</comment>
+      <content>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+    &lt;mirrors&gt;
+        &lt;mirror&gt;
+            &lt;id&gt;mirror&lt;/id&gt;
+            &lt;mirrorOf&gt;central,jcenter,!rdc-releases,!rdc-snapshots&lt;/mirrorOf&gt;
+            &lt;name&gt;mirror&lt;/name&gt;
+            &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+        &lt;/mirror&gt;
+
+    &lt;/mirrors&gt;
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;id&gt;rdc-releases&lt;/id&gt;
+            &lt;username&gt;60c19d47aa6381038e4ab3f9&lt;/username&gt;
+            &lt;password&gt;swpAQZUnOWD=&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;server&gt;
+            &lt;id&gt;rdc-snapshots&lt;/id&gt;
+            &lt;username&gt;60c19d47aa6381038e4ab3f9&lt;/username&gt;
+            &lt;password&gt;swpAQZUnOWD=&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+    &lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;id&gt;rdc&lt;/id&gt;
+            &lt;properties&gt;
+                &lt;altReleaseDeploymentRepository&gt;
+                    rdc-releases::default::https://packages.aliyun.com/maven/repository/2110806-release-Q7cWXO/
+                &lt;/altReleaseDeploymentRepository&gt;
+                &lt;altSnapshotDeploymentRepository&gt;
+                    rdc-snapshots::default::https://packages.aliyun.com/maven/repository/2110806-snapshot-JBpUvd/
+                &lt;/altSnapshotDeploymentRepository&gt;
+            &lt;/properties&gt;
+            &lt;repositories&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;snapshots&lt;/id&gt;
+                    &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;rdc-releases&lt;/id&gt;
+                    &lt;url&gt;https://packages.aliyun.com/maven/repository/2110806-release-Q7cWXO/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;rdc-snapshots&lt;/id&gt;
+                    &lt;url&gt;https://packages.aliyun.com/maven/repository/2110806-snapshot-JBpUvd/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+            &lt;/repositories&gt;
+            &lt;pluginRepositories&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;snapshots&lt;/id&gt;
+                    &lt;url&gt;https://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;rdc-releases&lt;/id&gt;
+                    &lt;url&gt;https://packages.aliyun.com/maven/repository/2110806-release-Q7cWXO/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;rdc-snapshots&lt;/id&gt;
+                    &lt;url&gt;https://packages.aliyun.com/maven/repository/2110806-snapshot-JBpUvd/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+            &lt;/pluginRepositories&gt;
+        &lt;/profile&gt;
+    &lt;/profiles&gt;
+    &lt;activeProfiles&gt;
+        &lt;activeProfile&gt;rdc&lt;/activeProfile&gt;
+    &lt;/activeProfiles&gt;
+&lt;/settings&gt;</content>
+      <providerId>org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig</providerId>
+      <serverCredentialMappings/>
+      <isReplaceAll>true</isReplaceAll>
+    </org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig>
+    <org.jenkinsci.plugins.configfiles.properties.PropertiesConfig>
+      <id>741b469c-cb3a-4e31-8d48-5a51139b41d4</id>
+      <name>test</name>
+      <comment>apollo配置中心test	</comment>
+      <content>env=test
+apollo.meta=https://config-meta-test.uniev.com</content>
+      <providerId>org.jenkinsci.plugins.configfiles.properties.PropertiesConfig</providerId>
+      <propertiesCredentialMappings/>
+      <isReplaceAll>true</isReplaceAll>
+    </org.jenkinsci.plugins.configfiles.properties.PropertiesConfig>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>75df987a-c055-4405-a108-21fecc3a9d69</id>
+      <name>SingleWebHook</name>
+      <comment></comment>
+      <content>import sys
+
+import jenkins
+import traceback
+
+
+jenkins = jenkins.Jenkins(&apos;http://127.0.0.1:8080&apos;, username=&apos;jenkins&apos;,
+                          password=&apos;11ccf87a4e12ade09deb635f5f553241a2&apos;)
+
+if __name__ == &apos;__main__&apos;:
+    git = sys.argv[1]
+    module = sys.argv[1].split(&apos;/&apos;)[-1].split(&apos;.&apos;)[0]
+    try:
+        jenkins.build_job(module, {&apos;branch&apos;: sys.argv[2]})
+    except:
+        print(traceback.format_exc())</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.properties.PropertiesConfig>
+      <id>85156f53-4c54-44bb-bfdb-2ff6c39351b2</id>
+      <name>dev</name>
+      <comment>apollo配置中心dev</comment>
+      <content>env=dev
+apollo.meta=https://config-meta-dev.uniev.com</content>
+      <providerId>org.jenkinsci.plugins.configfiles.properties.PropertiesConfig</providerId>
+      <propertiesCredentialMappings/>
+      <isReplaceAll>true</isReplaceAll>
+    </org.jenkinsci.plugins.configfiles.properties.PropertiesConfig>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>8717bac8-037e-4007-af03-b98df55f7b09</id>
+      <name>tag.py</name>
+      <comment></comment>
+      <content>import sys
+import datetime
+import os
+import subprocess
+
+if __name__ == &apos;__main__&apos;:
+    message_list = sys.argv[1].split(&apos;,&apos;)
+    workspace = sys.argv[2]
+    for message in message_list:
+        if &apos;到 master&apos; and &apos;tag:&apos; in message:
+            tag = message.split(&apos;\\n&apos;)[1].split(&apos;:&apos;)[1]
+            version = &apos;v&apos; + datetime.datetime.now().strftime(&quot;%Y%m%d%H%M&quot;)
+            os.chdir(workspace)
+            subprocess.run([&apos;git&apos;, &apos;tag&apos;, &apos;-a&apos;, version, &apos;-m&apos;, tag])
+            subprocess.run([&apos;git&apos;, &apos;push&apos;, &apos;origin&apos;, version])
+            break
+</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>89b19c74-bcaf-40ac-85fa-4fca3834c13d</id>
+      <name>dependency.py</name>
+      <comment>依赖检查脚本</comment>
+      <content>import re
+import subprocess
+import sys
+
+import pymysql
+
+db = pymysql.connect(host=&quot;pc-2ze09zi74x95skc07.rwlb.rds.aliyuncs.com&quot;, user=&quot;jenkins_rw&quot;, password=&quot;nc4Y2jZ4lfeM1CZ5&quot;, db=&quot;jenkins&quot;)
+cursor = db.cursor()
+
+
+def batch_insert(name, group_id, artifact_id, version):
+    list = []
+    if len(group_id) == 0:
+        return
+    for i in range(len(group_id)):
+        list.append(&quot;(&apos;{}&apos;,&apos;{}&apos;,&apos;{}&apos;,&apos;{}&apos;)&quot;.format(name, group_id[i], artifact_id[i], version[i]))
+    # 涉及到增减jar包问题，因为是非必要数据，所以就不保证数据的可靠性了
+    delete_sql = &quot;delete from dependency where `name`=&apos;{}&apos;&quot;.format(name)
+    sql = &apos;insert into dependency(`name`,`group_id`,`artifact_id`,`version`) values &apos; + &apos;,&apos;.join(list)
+    cursor.execute(delete_sql)
+    cursor.execute(sql)
+    db.commit()
+
+
+if __name__ == &apos;__main__&apos;:
+    name = sys.argv[1]
+    dependency = subprocess.run([&quot;/home/apache-maven-3.6.3/bin/mvn&quot;, &quot;dependency:list&quot;, &quot;-pl&quot;, name], stdout=subprocess.PIPE,
+                                universal_newlines=True)
+    output = dependency.stdout.split(&apos;\n&apos;)
+    group_id = []
+    artifact_id = []
+    version = []
+    for line in output:
+        match = re.match(r&apos;(\S*) {4}(.*):(.*):jar:(.*):(.*)&apos;, line)
+        if match:
+            group_id.append(match.group(2))
+            artifact_id.append(match.group(3))
+            version.append(match.group(4))
+    batch_insert(name, group_id, artifact_id, version)
+</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>a4856237-2887-49a4-8ad9-bf7ca911acf7</id>
+      <name>Dockerfile_java</name>
+      <comment></comment>
+      <content>FROM registry-vpc.cn-beijing.aliyuncs.com/unievbj/unievbj-openjdk:8
+ADD target/*.jar /usr/share/service/service.jar</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>b09fb911-2b34-43de-a528-2ed51e89f0b9</id>
+      <name>Dockerfile_java_special</name>
+      <comment></comment>
+      <content>FROM registry-vpc.cn-beijing.aliyuncs.com/uniev/uniev-openjdk-8-all:8
+
+ADD libs /usr/share/service/libs
+ADD res /usr/share/service/res
+ADD target/*.jar /usr/share/service/service.jar
+
+ENV ELASTIC_APM_SERVICE_NAME=${JOB_BASE_NAME}
+</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.properties.PropertiesConfig>
+      <id>b74e3ae0-c6e7-4ab0-bc81-886c7b159978</id>
+      <name>prod</name>
+      <comment>apollo配置中心prod</comment>
+      <content>env=prod
+apollo.meta=http://apollo-service-prod-apollo-configservice:8080</content>
+      <providerId>org.jenkinsci.plugins.configfiles.properties.PropertiesConfig</providerId>
+      <propertiesCredentialMappings/>
+      <isReplaceAll>true</isReplaceAll>
+    </org.jenkinsci.plugins.configfiles.properties.PropertiesConfig>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>d0c6183a-1bc9-4f77-be0c-12c078a4e88a</id>
+      <name>WebHook.py</name>
+      <comment></comment>
+      <content>import os
+import subprocess
+import sys
+
+import jenkins
+import pymysql
+import traceback
+
+db = pymysql.connect(&quot;pc-2zemi967ep6d10441.rwlb.rds.aliyuncs.com&quot;, &quot;jenkins_rw&quot;, &quot;tUWOk8ZtYt5hEG2B25x&quot;,
+                     &quot;jenkins&quot;)
+cursor = db.cursor()
+jenkins = jenkins.Jenkins(&apos;https://jenkins.uniev.com&apos;, username=&apos;jenkins&apos;,
+                          password=&apos;11ccf87a4e12ade09deb635f5f553241a2&apos;)
+
+
+def last_commit(git, branch):
+    sql = &quot;select module,commit from last_commit where git=&apos;{}&apos; and branch=&apos;{}&apos;&quot;.format(git, branch)
+    cursor.execute(sql)
+    data = cursor.fetchall()
+    return data
+
+
+def insert_commit(git, branch, module, commit):
+    sql = &quot;insert into last_commit(git,branch,module,commit) values (&apos;{}&apos;,&apos;{}&apos;,&apos;{}&apos;,&apos;{}&apos;)&quot;.format(git, branch, module,
+                                                                                                  commit)
+    cursor.execute(sql)
+    db.commit()
+    return
+
+
+def update_commit(git, branch, module, commit):
+    sql = &quot;update last_commit set commit=&apos;{}&apos; where git=&apos;{}&apos; and branch=&apos;{}&apos; and module=&apos;{}&apos;&quot;.format(commit, git,
+                                                                                                     branch, module)
+    cursor.execute(sql)
+    db.commit()
+    return
+
+
+def remove_commit(git, branch, module):
+    sql = &quot;delete from last_commit where git=&apos;{}&apos; and branch=&apos;{}&apos; and module=&apos;{}&apos;&quot;.format(git, branch, module)
+    cursor.execute(sql)
+    db.commit()
+    return
+
+
+def request_compile(commit, module, lastCommit):
+    diff_lines = subprocess.getoutput([&quot;git diff {} {} --stat=1000,1000&quot;.format(commit, lastCommit)]).split(&apos;\n&apos;)
+    del (diff_lines[-1])
+    print(diff_lines)
+    for diff in diff_lines:
+        if module == diff.split(&quot;/&quot;)[0].replace(&apos; &apos;, &apos;&apos;):
+            return module
+    return &quot;&quot;
+
+
+def all_modules():
+    for walk in os.walk(&apos;./&apos;):
+        return set(walk[1])
+
+
+if __name__ == &apos;__main__&apos;:
+    try:
+        current_commit = subprocess.getoutput([&quot;git --no-pager log -1 --pretty=format:\&quot;%H %an\&quot;&quot;]).split(&apos; &apos;)[0]
+        current_commit = current_commit[:8]
+        all_in = False
+        last_commits = last_commit(sys.argv[1], sys.argv[2])  # 0:module 1:commit
+        print(current_commit)
+        print(last_commits)
+        common_modules = {&apos;nginx&apos;, &apos;library&apos;, &apos;common&apos;, &apos;dal&apos;, &apos;global&apos;}  # add common modules
+        ignore_modules = {&apos;.git&apos;}
+        all_modules = all_modules() - ignore_modules
+        need_compile = set()
+        for last_commit in last_commits:
+            if last_commit[0] not in all_modules:
+                remove_commit(sys.argv[1], sys.argv[2], last_commit[0])
+                continue
+                # remove modules situation
+            cur_module = request_compile(current_commit, last_commit[0], last_commit[1])
+            if len(cur_module) != 0:
+                need_compile.add(cur_module)
+        # together are the need_compile
+        for all in all_modules.copy():
+            for common in common_modules:
+                if common in all:
+                    all_modules.remove(all)
+        # clean common modules
+        for need in need_compile:
+            if &apos;fatal&apos; in need:
+                # git reset hard case
+                need_compile.clear()
+                break
+            if all_in:
+                break
+            for common in common_modules:
+                if common in need:
+                    all_in = True
+                    print(&quot;all modules compile&quot;)
+                    break
+        if all_in or not need_compile:
+            need_compile = all_modules  # compile all modules or not
+
+        print(need_compile)
+        for need in need_compile:
+            flag = True
+            for last_commit in last_commits:
+                if last_commit[0] == need:
+                    update_commit(sys.argv[1], sys.argv[2], need, current_commit)
+                    flag = False
+                    break
+            if flag:
+                insert_commit(sys.argv[1], sys.argv[2], need, current_commit)
+            try:
+                jenkins.build_job(need, {&apos;branch&apos;: sys.argv[2]})
+            except:
+                print(traceback.format_exc())
+    finally:
+        db.close()
+</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>dce361b7-04ea-44e3-9406-792600ef9fa5</id>
+      <name>Dockerfile_golang</name>
+      <comment></comment>
+      <content>FROM registry-vpc.cn-beijing.aliyuncs.com/uniev/golang:1.14
+
+ARG PROJECT
+COPY . /go/src/${PROJECT}
+WORKDIR /go/src/${PROJECT}</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig>
+      <id>fa6dfc40-551b-4233-a370-a39db76dc708</id>
+      <name>old</name>
+      <comment>原联行旧配置</comment>
+      <content>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+    &lt;mirrors&gt;
+        &lt;mirror&gt;
+            &lt;id&gt;mirror&lt;/id&gt;
+            &lt;mirrorOf&gt;!rdc-releases,!rdc-snapshots&lt;/mirrorOf&gt;
+            &lt;name&gt;mirror&lt;/name&gt;
+            &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+        &lt;/mirror&gt;
+    &lt;/mirrors&gt;
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;id&gt;rdc-releases&lt;/id&gt;
+            &lt;username&gt;N3gqkK&lt;/username&gt;
+            &lt;password&gt;NR5NdVi3zC&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;server&gt;
+            &lt;id&gt;rdc-snapshots&lt;/id&gt;
+            &lt;username&gt;N3gqkK&lt;/username&gt;
+            &lt;password&gt;NR5NdVi3zC&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+    &lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;repositories&gt;
+                
+                &lt;repository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;snapshots&lt;/id&gt;
+                    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;rdc-releases&lt;/id&gt;
+                    &lt;url&gt;https://repo.rdc.aliyun.com/repository/71320-release-pmGT0W/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;rdc-snapshots&lt;/id&gt;
+                    &lt;url&gt;https://repo.rdc.aliyun.com/repository/71320-snapshot-MjZDIf/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+            &lt;/repositories&gt;
+            &lt;pluginRepositories&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;snapshots&lt;/id&gt;
+                    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;rdc-releases&lt;/id&gt;
+                    &lt;url&gt;https://repo.rdc.aliyun.com/repository/71320-release-pmGT0W/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;rdc-snapshots&lt;/id&gt;
+                    &lt;url&gt;https://repo.rdc.aliyun.com/repository/71320-snapshot-MjZDIf/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+            &lt;/pluginRepositories&gt;
+        &lt;/profile&gt;
+
+    &lt;/profiles&gt;
+
+    &lt;activeProfiles&gt;
+        &lt;activeProfile&gt;nexus&lt;/activeProfile&gt;
+    &lt;/activeProfiles&gt;
+
+&lt;/settings&gt;</content>
+      <providerId>org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig</providerId>
+      <serverCredentialMappings/>
+      <isReplaceAll>true</isReplaceAll>
+    </org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig>
+    <org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig>
+      <id>ff479723-32a3-48f1-a501-a8c021366f66</id>
+      <name>old</name>
+      <comment>原联行旧配置</comment>
+      <content>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+    &lt;mirrors&gt;
+        &lt;mirror&gt;
+            &lt;id&gt;mirror&lt;/id&gt;
+            &lt;mirrorOf&gt;!rdc-releases,!rdc-snapshots&lt;/mirrorOf&gt;
+            &lt;name&gt;mirror&lt;/name&gt;
+            &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+        &lt;/mirror&gt;
+    &lt;/mirrors&gt;
+    &lt;servers&gt;
+        &lt;server&gt;
+            &lt;id&gt;rdc-releases&lt;/id&gt;
+            &lt;username&gt;N3gqkK&lt;/username&gt;
+            &lt;password&gt;NR5NdVi3zC&lt;/password&gt;
+        &lt;/server&gt;
+        &lt;server&gt;
+            &lt;id&gt;rdc-snapshots&lt;/id&gt;
+            &lt;username&gt;N3gqkK&lt;/username&gt;
+            &lt;password&gt;NR5NdVi3zC&lt;/password&gt;
+        &lt;/server&gt;
+    &lt;/servers&gt;
+    &lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;repositories&gt;
+                
+                &lt;repository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;snapshots&lt;/id&gt;
+                    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;rdc-releases&lt;/id&gt;
+                    &lt;url&gt;https://repo.rdc.aliyun.com/repository/71320-release-pmGT0W/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;rdc-snapshots&lt;/id&gt;
+                    &lt;url&gt;https://repo.rdc.aliyun.com/repository/71320-snapshot-MjZDIf/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/repository&gt;
+            &lt;/repositories&gt;
+            &lt;pluginRepositories&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;central&lt;/id&gt;
+                    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;snapshots&lt;/id&gt;
+                    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;rdc-releases&lt;/id&gt;
+                    &lt;url&gt;https://repo.rdc.aliyun.com/repository/71320-release-pmGT0W/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+                &lt;pluginRepository&gt;
+                    &lt;id&gt;rdc-snapshots&lt;/id&gt;
+                    &lt;url&gt;https://repo.rdc.aliyun.com/repository/71320-snapshot-MjZDIf/&lt;/url&gt;
+                    &lt;releases&gt;
+                        &lt;enabled&gt;false&lt;/enabled&gt;
+                    &lt;/releases&gt;
+                    &lt;snapshots&gt;
+                        &lt;enabled&gt;true&lt;/enabled&gt;
+                    &lt;/snapshots&gt;
+                &lt;/pluginRepository&gt;
+            &lt;/pluginRepositories&gt;
+        &lt;/profile&gt;
+
+    &lt;/profiles&gt;
+
+    &lt;activeProfiles&gt;
+        &lt;activeProfile&gt;nexus&lt;/activeProfile&gt;
+    &lt;/activeProfiles&gt;
+
+&lt;/settings&gt;</content>
+      <providerId>org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig</providerId>
+      <serverCredentialMappings/>
+      <isReplaceAll>true</isReplaceAll>
+    </org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig>
+  </configs>
+</org.jenkinsci.plugins.configfiles.GlobalConfigFiles>

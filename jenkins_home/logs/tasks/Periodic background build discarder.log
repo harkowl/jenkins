@@ -1,0 +1,28 @@
+Started at Tue Oct 19 02:47:14 UTC 2021
+Processing DeployPipeline
+Offering DeployPipeline to Project Build Discarder
+DeployPipeline accepted by Project Build Discarder
+Processing 新建FE工程-Origin
+Offering 新建FE工程-Origin to Project Build Discarder
+新建FE工程-Origin accepted by Project Build Discarder
+Processing 新建GO工程
+Offering 新建GO工程 to Project Build Discarder
+新建GO工程 accepted by Project Build Discarder
+Processing 新建Java工程
+Offering 新建Java工程 to Project Build Discarder
+新建Java工程 accepted by Project Build Discarder
+Finished at Tue Oct 19 02:47:14 UTC 2021. 24ms
+Started at Tue Oct 19 03:47:14 UTC 2021
+Processing DeployPipeline
+Offering DeployPipeline to Project Build Discarder
+DeployPipeline accepted by Project Build Discarder
+Processing 新建FE工程-Origin
+Offering 新建FE工程-Origin to Project Build Discarder
+新建FE工程-Origin accepted by Project Build Discarder
+Processing 新建GO工程
+Offering 新建GO工程 to Project Build Discarder
+新建GO工程 accepted by Project Build Discarder
+Processing 新建Java工程
+Offering 新建Java工程 to Project Build Discarder
+新建Java工程 accepted by Project Build Discarder
+Finished at Tue Oct 19 03:47:14 UTC 2021. 1ms

@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: sylvain
+Build-Jdk: 1.7.0_17
+Extension-Name: jobgenerator
+Specification-Title: A job generator which can replicates itself to pr
+ oduce a regular job. The generation can be parameterized via the stan
+ dard build parameters of Jenkins by adding Generator Parameters.
+Implementation-Title: jobgenerator
+Implementation-Version: 1.22
+Plugin-Class: org.jenkinsci.plugins.jobgenerator.JobGeneratorPlugin
+Group-Id: org.jenkins-ci.plugins
+Short-Name: jobgenerator
+Long-Name: Job Generator
+Url: http://wiki.jenkins-ci.org/display/JENKINS/Job+Generator+Plugin
+Plugin-Version: 1.22
+Hudson-Version: 1.489
+Jenkins-Version: 1.489
+Plugin-Dependencies: conditional-buildstep:1.2.2,run-condition:0.10,pa
+ rameterized-trigger:2.18,token-macro:1.7
+Plugin-Developers: Sylvain Benner:syl20bnr:sylvain.benner@gmail.com
+

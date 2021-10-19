@@ -15,3 +15,6 @@ wget -c https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz
         - name: jenkinshome
           hostPath:
             path: /data/jenkins_home
+
+## 镜像建议使用huanke/jenkins-base:v1
+地址：https://hub.docker.com/repository/docker/huanke/jenkins-base
